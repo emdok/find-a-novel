@@ -5,7 +5,6 @@ import Auth from '../utils/auth';
 import { searchGoogleBooks } from '../utils/API';
 import { saveBookIds, getSavedBookIds } from '../utils/localStorage';
 import { SAVE_BOOK } from '../utils/mutations';
-import { GET_ME } from '../utils/queries';
 import { useMutation } from '@apollo/client';
 
 const SearchBooks = () => {
@@ -56,6 +55,7 @@ const SearchBooks = () => {
   };
 
   const [saveBook] = useMutation(SAVE_BOOK);
+  
   // create function to handle saving a book to our database
   const handleSaveBook = async (bookId) => {
     
