@@ -9,11 +9,10 @@ import { removeBookId } from '../utils/localStorage';
 
 const SavedBooks = () => {
   const {loading, data} = useQuery(GET_ME);
-  console.log(data);
   const userData = data?.me || {};
   console.log(userData);
 
-  const deleteBook = useMutation(REMOVE_BOOK);
+  const [deleteBook] = useMutation(REMOVE_BOOK);
 
 
 
@@ -26,11 +25,9 @@ const SavedBooks = () => {
     }
 
     try {
-      const response = await deleteBook(bookId, token);
-
-      if (!response.ok) {
-        throw new Error('something went wrong!');
-      }
+      deleteBook({
+        variables: { bookId: bookId }
+      });
 
       // upon success, remove book's id from localStorage
       removeBookId(bookId);
